@@ -60,16 +60,24 @@ public class TableSimulator{
 
 
 	public static void testRemove(HashTable<IpAddress> table, IpAddress targetIpAddress){
-		// YOU FINISH SO THIS METHOD DOES THE FOLLOWING
-		//     Display the result of calling the parameter HashTable's insert method
-		//     		passing the targetIpAdddress, with a text as shown in the test runs
-		//			(be sure to display the IpAddress parameter, too) 
+		//     Display the result of calling the parameter HashTable's insert method passing the targetIpAdddress, with a text as shown in the test runs (be sure to display the IpAddress parameter, too) 
+		System.out.println("Inserted " + targetIpAddress);
+		table.insert(targetIpAddress);
+
 		//     Call the parameter HashTable's remove method, passing the targetIpAdddress
+		boolean isRemoved = false;
+		System.out.println("Removed " + targetIpAddress);
+		isRemoved = table.remove(targetIpAddress);
+
 		//     If it returns true, display a message that it was removed 
 		//			(and display targetIpAddress)
 		//     If it returns false, display a message that the remove failed 
 		//			(and display targetIpAddress
-		// Make sure you don't call the remove() method more than once in this method!
+		if (isRemoved) {
+			System.out.println("Remove success!");
+		} else {
+			System.out.println("Remove failed!");
+		}
 	}
 
 
@@ -89,11 +97,13 @@ public class TableSimulator{
 
 			    // insert the same IpAddress instance to each hash table
 			    // (Optional: display if it successfully inserted or not.)
-			    System.out.println("Inserted into HashSC: " + line);
+			    System.out.println("Inserted into HashSC: " + ip);
 			    sc.insert(ip);
 
-			    System.out.println("Inserted into HashSC: " + line);
+			    System.out.println("Inserted into HashSC: " + ip);
 			    qp.insert(ip);
+
+			    lastIp = ip;
 			}
 
 			file.close();
@@ -107,12 +117,12 @@ public class TableSimulator{
 		call the displayTable method AND call the displayStatistics for your HashSC and then your HashQP table, (make sure you display a description of which table is being displayed first)
 	*/
 	private static void displayAll(HashTable<IpAddress> qp, HashTable<IpAddress> sc){
-		System.out.println("\nContents of HashSC with the IpValue key:");
+		System.out.print("\nContents of HashSC with the IpValue key:");
 		sc.displayTable();
 		System.out.println("\nIn the HashSC object:");
 		sc.displayStatistics();
 
-		System.out.println("\nContents of HashQP with the IpValue key:");
+		System.out.print("\nContents of HashQP with the IpValue key:");
 		qp.displayTable();
 		System.out.println("\nIn the HashQP object:");
 		qp.displayStatistics();
