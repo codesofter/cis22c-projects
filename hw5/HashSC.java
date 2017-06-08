@@ -229,7 +229,7 @@ public class HashSC<E> extends HashTable<E>{
       int hashVal;
 
       // CHANGE TO USE Hasher's hash method INSTEAD of x.hashCode for HW#5!!!!!!!!!!!
-      hashVal = hasher.hashCode() % mTableSize; 
+      hashVal = hasher.hash(x) % mTableSize; 
       if (hashVal < 0) {
          hashVal += mTableSize;
       }
