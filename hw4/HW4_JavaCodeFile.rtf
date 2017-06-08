@@ -1,0 +1,467 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fnil\fcharset0 Consolas;\f1\fnil\fcharset0 Verdana;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red127\green0\blue85;\red0\green0\blue192;
+\red106\green62\blue62;\red63\green127\blue95;\red42\green0\blue255;\red100\green100\blue100;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c49804\c0\c33333;\csgenericrgb\c0\c0\c75294;
+\csgenericrgb\c41569\c24314\c24314;\csgenericrgb\c24706\c49804\c37255;\csgenericrgb\c16471\c0\c100000;\csgenericrgb\c39216\c39216\c39216;}
+{\info
+{\author Faculty}
+{\*\company FHDA}}\margl720\margr720\margb720\margt720\vieww12540\viewh16140\viewkind1
+\deftab720
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+
+\f0\fs22 \cf0 \
+Programming HW#4 Java Code File\
+\
+Use the TreeInterface.java and BinaryNode.java classes exactly as given in the Tree Code File (and HW#4 files), as well as the following (which need to be changed or added):\
+\
+import java.io.*;\
+public abstract class BinaryTree<E> implements TreeInterface<E> \{\
+	protected BinaryNode<E> root=null; // reference to the root\
+    protected int size=0; // number of nodes in the tree\
+\
+    public BinaryTree()\{ \}\
+\
+\
+    /** Clears the whole tree */\
+    public void clear()\
+    \{\
+    	    	root = null;\
+    		size = 0;\
+    \}\
+    \
+	/* FINISH THIS METHOD so it will call writeTree which\
+		will display the tree LIKE below, in this example, 50 is in the root\
+		70 is in the RIGHT child of the root, 20 is in the LEFT child of the root,\
+		80 is in the RIGHT child of 70, 60 is in the LEFT child of 70,\
+		40 is in the RIGHT child of 20, 10 is in the LEFT child of 20\
+\pard\pardeftab720\li720\fi720\ri0\partightenfactor0
+\cf2 3. 80 \
+\pard\pardeftab720\fi720\ri0\partightenfactor0
+\cf2 2. 70\
+\pard\pardeftab720\li720\fi720\ri0\partightenfactor0
+\cf2 3. 60  \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 1. 50\
+\pard\pardeftab720\li720\fi720\ri0\partightenfactor0
+\cf2 3. 40 \
+\pard\pardeftab720\fi720\ri0\partightenfactor0
+\cf2 2. 20 \
+\pard\pardeftab720\li720\fi720\ri0\sl276\slmult1\sa200\partightenfactor0
+\cf2 3. 10\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+\cf0 */\
+	public void writeIndentedTree(PrintStream writer)\
+	\{\
+		// Call the writeTree, passing this parameter, this' root, 1 and ""\
+	\}\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+
+\f1\b \cf0 \
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+
+\f0\b0 \cf0 	// FINISH THE FOLLOWING METHOD so it returns if the root is null,\
+	//     calls print or println for the PrintWriter parameter to write the root's data\
+	//     then (like inorder, but "reversed" and with level and indent) make\
+	//     recursive calls to writeTree\
+	protected void writeTree(PrintStream writer, \
+			BinaryNode<E> root, int level, String indent)\
+	\{\
+\
+	\}\
+\
+    @Override /** \ul Preorder\ulnone  traversal from the root */\
+    public void preorder(Visitor<E> visitor) \
+    \{\
+        preorder(root, visitor);\
+    \}\
+\
+    @Override /** \ul Inorder\ulnone  traversal from the root*/\
+    public void inorder(Visitor<E> visitor) \
+    \{\
+        inorder(root, visitor);\
+    \}\
+\
+    @Override /** \ul Postorder\ulnone  traversal from the root */\
+    public void postorder(Visitor<E> visitor) \
+    \{\
+    		postorder(root, visitor);\
+    \}\
+\
+    @Override /** Get the number of nodes in the tree */\
+    public int getSize() \
+    \{\
+    		return size;\
+    \}\
+\
+\
+    @Override /** Return true if the tree is empty */\
+    public boolean isEmpty() \
+    \{\
+    		return getSize() == 0;\
+    \}\
+\
+    /** \ul Preorder\ulnone  traversal from a subtree */\
+    protected void preorder(BinaryNode<E> root, Visitor<E> visitor) \
+    \{\
+    		if (root == null)\
+    			return;\
+    		visitor.visit(root.getData());\
+    		preorder(root.getLeftChild(), visitor);\
+    		preorder(root.getRightChild(), visitor);\
+    \}\
+\
+     /** \ul Inorder\ulnone  traversal from a subtree */\
+    protected void inorder(BinaryNode<E> root, Visitor<E> visitor) \
+    \{\
+         // you finish (part of HW#4), SEE preorder above this\
+\
+    \}\
+\
+     /** \ul Posorder\ulnone  traversal from a subtree */\
+    protected void postorder(BinaryNode<E> root, Visitor<E> visitor) \
+    \{\
+         // you finish (part of HW#4)\
+\
+    \}\
+\} // end abstract BinaryTree class\
+\
+//-----------------------------------------------------------------------\
+public class BST<E>  \
+	extends BinaryTree<E>\
+\{\
+\
+    private boolean foundNode; // helper variable\
+	// DECLARE A PRIVATE COMPARATOR INSTANCE VARIABLE HERE!\
+\
+    /** Create a default binary tree */\
+    public BST()// SEE HW#4 FOR WHAT TO CHANGE HERE\
+	\{ \
+\
+    \}\
+\
+    /** Create a binary tree from an array of objects */\
+    public BST(E[] objects) // SEE HW#4 FOR WHAT TO CHANGE HERE\
+\
+    \{\
+    	for (int i = 0; i < objects.length; i++)\
+    		insert(objects[i]);\
+    \}\
+\
+    @Override /** Returns true if the element is in the tree */\
+    public boolean contains(E e)\
+    \{\
+    	BinaryNode<E> current = root; // Start from the root\
+\
+    	while (current != null)\
+    	\{\
+    		if (e.compareTo(current.getData()) < 0)//*****CHANGE THIS for HW#4*****\
+    		\{\
+    			current = current.getLeftChild();\
+    		\}\
+    		else if (e.compareTo(current.getData()) > 0)//*****CHANGE THIS for HW#4*****\
+    		\{\
+    				current = current.getRightChild();\
+    		\}\
+    		else // element matches current.getData()\
+    			return true; // Element is found\
+    	\}\
+\
+    	return false;\
+    \}\
+\
+	@Override\
+	/**\
+	 * Returns the data of the Node that equals the parameter, null if not found.\
+	 * */\
+	public E getEntry(E e)         // YOU WRITE FOR HW#4\
+	\{\
+        // Call findNode starting with the root and save the return value\
+        // Check the return value to see if it's found or not\
+        // If it's found, return the return value's data\
+        //     Otherwise return null\
+	\}\
+\
+	// FOR EXERCISE: CALL A PRIVATE RECURSIVE METHOD THAT RETURNS A BinaryNode that equals THE PARAMETER\
+	//     If found, return the data in the returned BinaryNode\
+\
+	private BinaryNode<E> _findNode(BinaryNode<E> node, E e )\
+	\{\
+		if( node == null )\
+			return null;\
+		else if( e.compareTo(node.getData()) < 0 ) //*****CHANGE THIS for HW#4*****\
+				return _findNode( node.getLeftChild(), e );\
+		else if( e.compareTo(node.getData()) > 0 ) //*****CHANGE THIS for HW#4*****\
+				return _findNode( node.getRightChild(), e );\
+		else // found it!\
+			return node;\
+	\}\
+\
+\
+	@Override\
+	/** Insert element e into the binary tree\
+	 * Return true if the element is inserted successfully */\
+	public boolean insert(E e)\
+	\{\
+		root = _insert(root, e); // calls private insert that YOU write for HW#4\
+        size++;\
+		return true; // Element inserted successfully\
+	\}\
+\
+	// Private recursive method that returns an updated "root" node from where current node is\
+    private BinaryNode<E> _insert( BinaryNode<E> node, E e )\
+    \{\
+        // YOU WRITE FOR HW#4, using this recursive algorithm: (HINT:see _delete)\
+		// MAKE SURE YOU COMPARE CORRECTLY MUST call the correct METHOD to compare!\
+        //      IF no more nodes THEN\
+        //                return a new Node(e)\
+        //      ELSE IF e < node's data THEN\
+        //                   set the node's left to _insert(node's left, e)\
+        //           ELSE\
+        //                   set the node's right to _insert(node's right, e)\
+        //           ENDIF\
+		//           RETURN node\
+        //       ENDIF\
+\
+    \}\
+\
+	@Override\
+	/** Delete an element from the binary tree.\
+	 * Return true if the element is deleted successfully\
+	 * Return false if the element is not in the tree */\
+	public boolean delete(E e)\
+	\{\
+		foundNode = false;		// initialize boolean instance variable\
+		root = _delete(root, e); //call private method to do actual deletion\
+\
+		if( foundNode )\
+		\{\
+			size--;// Element deleted successfully\
+		\}\
+		return foundNode;\
+	\}\
+\
+	// Private recursive method that returns an updated "root" node from where current node is\
+    private BinaryNode<E> _delete( BinaryNode<E> node, E e )\
+    \{\
+        if( node==null )\
+        \{\
+            return null;\
+        \}\
+        if ( e.compareTo(node.getData()) < 0 ) // <, so go left//*****CHANGE THIS for HW#4*****\
+             node.setLeftChild( _delete(node.getLeftChild(), e) );//recursive call\
+        else\
+            if( e.compareTo(node.getData()) > 0 ) // >, so go right//*****CHANGE THIS for HW#4*****\
+                node.setRightChild( _delete(node.getRightChild(), e) );//recursive call\
+            else\
+            \{									// FOUND THE NODE\
+                foundNode = true;\
+                node = _deleteNode( node );\
+            \}\
+        return node;\
+    \} // end _delete\
+\
+    // Private method that either "moves up" the left or right child, OR\
+    //    replaces the data in the nodeToDelete with the data in the rightmost child of\
+    //    the nodeToDelete's left child, then "removes" that node\
+    private BinaryNode<E> _deleteNode( BinaryNode<E> nodeToDelete )\
+    \{\
+        if( nodeToDelete.isLeaf() ) // node to delete has no children\
+        \{\
+           return null;\
+        \}\
+        if( !nodeToDelete.hasLeftChild() ) // node to delete has no LEFT child\
+        \{\
+            return nodeToDelete.getRightChild();\
+        \}\
+        if( !nodeToDelete.hasRightChild() ) // node to delete has no RIGHT child\
+        \{\
+            return nodeToDelete.getLeftChild();\
+        \}\
+        // must have left and right children\
+        // Locate the rightmost node in the left subtree of\
+        // the node to delete and also its parent\
+        BinaryNode<E> parentOfRightMost = nodeToDelete;\
+        BinaryNode<E> rightMost = nodeToDelete.getLeftChild();\
+\
+        while (rightMost.getRightChild() != null)\
+        \{\
+            parentOfRightMost = rightMost;\
+            rightMost = rightMost.getRightChild(); // Keep going to the right\
+        \}\
+\
+        // Replace the element in nodeToDelete by the element in rightMost\
+        nodeToDelete.setData( rightMost.getData() ); // don't really delete the node, just change the data\
+\
+        // Eliminate rightmost node\
+        if (parentOfRightMost.getRightChild() == rightMost)\
+            parentOfRightMost.setRightChild( rightMost.getLeftChild() );\
+        else\
+            // Special case: nodeToDelete's leftChild has no rightChild\
+            parentOfRightMost.setLeftChild( rightMost.getLeftChild() );\
+\
+        return nodeToDelete;\
+    \} // end private _deleteNode\
+\
+    public E getFirst()// you finish (part of HW#4)\
+    \{\
+    	// NON-recursive algorithm:\
+    	// If the tree is empty,  return null\
+    	// FIND THE LEFT-MOST LEFT CHILD\
+    	// WHEN you can't go left anymore, return the node's data to first Item\
+    \}\
+    \
+    public E getLast()// you finish (part of HW#4)\
+    \{\
+    	// If the tree is empty, return null\
+    	// FIND THE RIGHT-MOST RIGHT CHILD\
+    	// WHEN you can't go RIGHT anymore, return the node's data to last Item\
+    \}\
+\
+\} // end class BST\
+\
+//////////////////////////////////////////////////////////////////////////\
+// Use this class as the Data class:\
+\
+\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+\cf3 public\cf0  \cf3 class\cf0  Date \cf3 implements\cf0  Comparable<Date>\{\
+	\
+	\cf3 static\cf0  \cf3 final\cf0  \cf3 int\cf0  \cf4 MIN_MONTH\cf0  = 1;\
+	\cf3 static\cf0  \cf3 final\cf0  \cf3 int\cf0  \cf4 MAX_MONTH\cf0  = 12;\
+	\cf3 static\cf0  \cf3 final\cf0  \cf3 int\cf0  \cf4 MIN_YEAR\cf0  = 1000;\
+	\cf3 static\cf0  \cf3 final\cf0  \cf3 int\cf0  \cf4 MAX_YEAR\cf0  = 9999;\
+	\cf3 static\cf0  \cf3 final\cf0  \cf3 int\cf0  [] \cf4 DAYS_IN_MONTH\cf0  =\
+		\{ 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 \};\
+\
+	\cf3 private\cf0  \cf3 int\cf0  \cf4 month\cf0  = 1;\
+	\cf3 private\cf0  \cf3 int\cf0  \cf4 day\cf0  = 1;\
+	\cf3 private\cf0  \cf3 int\cf0  \cf4 year\cf0  = 1000;\
+	\
+	\cf3 public\cf0  Date() \{\}\
+	\
+	\cf3 public\cf0  Date( \cf3 int\cf0  \cf5 m\cf0 , \cf3 int\cf0  \cf5 d\cf0 , \cf3 int\cf0  \cf5 y\cf0  )\
+	\{\
+		setDate(\cf5 m\cf0 , \cf5 d\cf0 , \cf5 y\cf0 ); \cf6 // else leave default values\cf0 \
+	\}\
+	\
+	\cf6 // YOU WRITE a static isLeapYear(\ul int\ulnone ) FUNCTION DEFINITION!!!\cf0 \
+	\cf6 // USE THE ALGORITHM: year is a leap year if it's:\cf0 \
+	\cf6 //	    divisible by 4 and not divisible by 100 OR\cf0 \
+	\cf6 //	    divisible by 400\cf0 \
+\
+	\cf3 public\cf0  \cf3 static\cf0  \cf3 boolean\cf0  isLeapYear(\cf3 int\cf0  \cf5 y\cf0 )\
+	\{\
+		\cf3 return\cf0  (\cf5 y\cf0  % 4 == 0 && \cf5 y\cf0  % 100 != 0 || \cf5 y\cf0  % 400 == 0);\
+	\}\
+	\
+	\cf3 public\cf0  \cf3 boolean\cf0  setDate( \cf3 int\cf0  \cf5 m\cf0 , \cf3 int\cf0  \cf5 d\cf0 , \cf3 int\cf0  \cf5 y\cf0  )\
+	\{\
+		\cf3 int\cf0  \cf5 isLeap\cf0  = 0;\
+\
+		\cf3 if\cf0  (\cf5 y\cf0  >= \cf4 MIN_YEAR\cf0  && \cf5 y\cf0  <= \cf4 MAX_YEAR\cf0 \
+			&& \cf5 m\cf0  >= \cf4 MIN_MONTH\cf0  && \cf5 m\cf0  <= \cf4 MAX_MONTH\cf0 )\
+		\{\
+			\cf3 if\cf0  (\cf5 m\cf0  == 2 && isLeapYear(\cf5 y\cf0 ))\
+				\cf5 isLeap\cf0  = 1;\
+			\cf3 if\cf0  (\cf5 d\cf0  >= 1 && \cf5 d\cf0  <= (\cf4 DAYS_IN_MONTH\cf0 [\cf5 m\cf0 ] + \cf5 isLeap\cf0 ))\
+			\{\
+				\cf4 month\cf0  = \cf5 m\cf0 ;\
+				\cf4 day\cf0  = \cf5 d\cf0 ;\
+				\cf4 year\cf0  = \cf5 y\cf0 ;\
+				\cf3 return\cf0  \cf3 true\cf0 ;\
+			\}\
+		\}\
+		\cf3 return\cf0  \cf3 false\cf0 ; \cf6 // leaves instance \ul vars\ulnone . as they were before\cf0 \
+	\} \cf6 // end setDate\cf0 \
+	\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\pardeftab720\ri0\partightenfactor0
+\cf0 	\cf3 public\cf0  \cf3 int\cf0  getMonth()\{ \cf3 return\cf0  \cf4 month\cf0 ; \}\
+	\
+	\cf3 public\cf0  \cf3 int\cf0  getDay()\{ \cf3 return\cf0  \cf4 day\cf0 ; \}\
+	\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+\cf0 	\cf3 public\cf0  \cf3 int\cf0  getYear()\{ \cf3 return\cf0  \cf4 year\cf0 ; \}\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\pardeftab720\ri0\partightenfactor0
+\cf0 \
+	\cf3 public\cf0  String toString()\{\
+		\cf3 return\cf0  \cf4 month\cf0  + \cf7 "/"\cf0  + \cf4 day\cf0  + \cf7 "/"\cf0  + \cf4 year\cf0 ;\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+\cf0 	\}\
+\
+// USE THE SAME METHOD YOU WROTE IN HW#3, BUT MAKE SURE IT'S FIXED\
+//     FEEDBACK ABOUT THIS METHOD WILL BE GIVEN WITHIN A WEEK\
+//     AFTER THE HW#3 DUE DATE\
+	\cf8 @Override\cf0 \
+	\cf3 public\cf0  \cf3 int\cf0  compareTo(Date \cf5 param\cf0 )\
+	\{
+\f2 \
+
+\f0 	\}\
+\}\
+\
+\
+\
+//************************************************************************\
+// USE THE FOLLOWING STATIC METHODS IN THE MAIN FILE AND \
+//    YOU'RE NOT ALLOWED TO CHANGE THEM (OR POINTS OFF)!\
+\
+// Remember to import the correct packages for Scanner and Files\
+\
+// 	NEVER ASSIGN THE userScanner TO ANY OTHER OBJECT IN THIS PROGRAM!!!\
+	\cf3 public\cf0  \cf3 static\cf0  Scanner \cf4 userScanner\cf0  = \cf3 new\cf0  Scanner(System.\cf4 in\cf0 );\
+\
+	// opens a text file for input, returns a Scanner:\
+	\cf3 public\cf0  \cf3 static\cf0  Scanner openInputFile()\
+	\{\
+		String filename;\
+        	Scanner scanner=\cf3 null\cf0 ;\
+        \
+		System.\cf4 out\cf0 .print(\cf7 "Enter the input filename: "\cf0 );\
+		filename = \cf4 userScanner\cf0 .nextLine();\
+        	File file= \cf3 new\cf0  File(filename);\
+\
+        	\cf3 try\cf0 \{\
+        		scanner = \cf3 new\cf0  Scanner(file);\
+        	\}\cf6 // end try\cf0 \
+        	\cf3 catch\cf0 (FileNotFoundException fe)\{\
+        	   System.\cf4 out\cf0 .println(\cf7 "Can't open input file\\n"\cf0 );\
+       	    \cf3 return\cf0  \cf3 null\cf0 ; \cf6 // array of 0 elements\cf0 \
+        	\} \cf6 // end catch\cf0 \
+        	\cf3 return\cf0  scanner;\
+	\}\
+\
+// CALL THIS METHOD AS INSTRUCTED ON THE ASSIGNMENT\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\pardeftab720\ri0\partightenfactor0
+\cf0 	\cf3 public\cf0  \cf3 static\cf0  \cf3 void\cf0  testMore(BST<Date> \cf5 tree\cf0 ) \
+	\{\
+		Date \cf5 firstDate\cf0 , \cf5 lastDate\cf0 =\cf3 null\cf0 ;\
+		Date \cf5 testDate1\cf0  = \cf3 new\cf0  Date(12, 31, 1900);\
+		Date \cf5 testDate2\cf0  = \cf3 new\cf0  Date(1, 2, 2000);\
+		\
+		System.\cf4 out\cf0 .println(\cf7 "\\nClearing tree:"\cf0 );\
+		\cf5 firstDate\cf0  = \cf5 tree\cf0 .getFirst();\
+		\cf3 while\cf0 ( \cf5 firstDate\cf0  != \cf3 null\cf0  )\
+		\{\
+			\cf5 lastDate\cf0  = \cf5 tree\cf0 .getLast();\
+			\cf3 if\cf0 ( \cf5 tree\cf0 .delete(\cf5 firstDate\cf0 ) )\
+				System.\cf4 out\cf0 .println(\cf7 "Removed "\cf0  + \cf5 firstDate\cf0 );\
+			\cf3 if\cf0 ( \cf5 firstDate\cf0  != \cf5 lastDate\cf0  && \cf5 tree\cf0 .delete(\cf5 lastDate\cf0 ) )\
+				System.\cf4 out\cf0 .println(\cf7 "Removed "\cf0  + \cf5 lastDate\cf0 );\
+			\cf5 firstDate\cf0  = \cf5 tree\cf0 .getFirst();\
+		\} \cf6 //\cf0 \
+		System.\cf4 out\cf0 .println(\cf7 "\\nTree is cleared, now writeIndentedTree displays: "\cf0 );\
+		\cf5 tree\cf0 .writeIndentedTree(System.\cf4 out\cf0 );\
+		System.\cf4 out\cf0 .println(\cf7 "End writing tree\\nNow adding back last 2 retrieved:"\cf0 );\
+		\cf5 tree\cf0 .insert(\cf5 testDate1\cf0 );\
+		\cf5 tree\cf0 .insert(\cf5 testDate2\cf0 );\
+		System.\cf4 out\cf0 .println(\cf7 "Now the tree has: "\cf0 );\
+		\cf5 tree\cf0 .writeIndentedTree(System.\cf4 out\cf0 );\
+	\} \cf6 // end testMore()\cf0 \
+	\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\tx2700\pardeftab720\ri0\partightenfactor0
+\cf0 // AND DON'T FORGET ALL THE OTHER static methods described on the assignment!\
+\pard\tx450\tx900\tx1350\tx1800\tx2250\pardeftab720\ri0\partightenfactor0
+\cf0 \
+}
