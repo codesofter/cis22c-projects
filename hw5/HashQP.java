@@ -1,3 +1,13 @@
+/*
+   @author So Choi
+
+   Name of Program:  HashQP
+   Description:      This class completes the HashQP file as given in instructions.
+   Date:             6/8/17
+   OS:               Mac OS X
+   Compiler:         terminal (javac)
+*/
+
 import java.util.Comparator;
 
 // HashQP class ------------------------
@@ -91,7 +101,7 @@ public class HashQP<E> extends HashTable<E>{
    }
    
    public void displayStatistics(){
-	   System.out.println("\nIn the HashQP object:\n");
+	   System.out.println("\n\nIn the HashQP object:\n");
 	   System.out.println( "Table Size = " +  mTableSize );;
 	   System.out.println( "Number of entries = " + mSize);
 	   System.out.println( "Load factor = " + (double)mSize/mTableSize);
@@ -168,6 +178,7 @@ public class HashQP<E> extends HashTable<E>{
          ++counter;
       }
 
+      // System.out.println(numCollisions + " vs " + counter + " vs " + longestCollisionRun);
       // ADD HERE: maybe update longestCollisionRun variable for HW#5!!!!!!!
       if (counter > longestCollisionRun) {
         longestCollisionRun = counter;

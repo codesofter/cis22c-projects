@@ -1,3 +1,13 @@
+/*
+   @author So Choi
+
+   Name of Program:  HashSC
+   Description:      This class completes the HashSC file as given in instructions.
+   Date:             6/8/17
+   OS:               Mac OS X
+   Compiler:         terminal (javac)
+*/
+
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -59,10 +69,9 @@ public class HashSC<E> extends HashTable<E>{
                Print items in the linked list for this hash table item
          */
          LList<E> theList = mLists[k];
-         Iterator<E> iter = theList.iterator();
          E currElem = null;
 
-         for (int i=0; iter.hasNext(); ++i ) {
+         for (Iterator<E> iter = theList.iterator(); iter.hasNext();  ) {
             String postStr = "";
 
             currElem = iter.next();
@@ -87,10 +96,10 @@ public class HashSC<E> extends HashTable<E>{
 		//   what the iterator returned if the comparator's compare 
 		//   method returns 0
       LList<E> theList = mLists[myHash(target)];
-      Iterator<E> iter = theList.iterator();
+      
       E currElem;
 
-      for (int i=0; iter.hasNext(); ++i ) {
+      for (Iterator<E> iter = theList.iterator(); iter.hasNext(); ) {
          currElem = iter.next();
          if (comparator.compare(currElem, target) == 0) {
             return currElem;
@@ -98,15 +107,15 @@ public class HashSC<E> extends HashTable<E>{
       }
 
       // not found
-      return target;
+      return null;
    }
 
    public boolean contains(E x){ 
       LList<E> theList = mLists[myHash(x)];
-      Iterator<E> iter = theList.iterator();
+      
       E currElem;
 
-      for (int i=0; iter.hasNext(); ++i ) {
+      for (Iterator<E> iter = theList.iterator(); iter.hasNext();  ) {
          currElem = iter.next();
          if (comparator.compare(currElem, x) == 0) {
             return true;
@@ -133,26 +142,24 @@ public class HashSC<E> extends HashTable<E>{
          add Code to HashSC's insert and HashQP's findPos so they will increment the collisionCount (declared in the superclass) ONLY when a collision occurs (see answers to Lab Ex.8.2)
       */
       LList<E> theList = mLists[myHash(x)];
-      Iterator<E> iter = theList.iterator();
       E currElem;
-      int counter = 0;
 
-      for (int i=0; iter.hasNext(); ++i ) {
+      for (Iterator<E> iter = theList.iterator(); iter.hasNext() ; ) {
          currElem = iter.next();
          if (comparator.compare(currElem, x) == 0) {
-            // ADD HERE: check and maybe UPDATE member counter variable
-            counter++;
-            numCollisions++;
             return false;
          }
+         // ADD HERE: check and maybe UPDATE member counter variable
+         numCollisions++;
       }
 
       // not found so we insert
       theList.add(x);
 
+      // System.out.println(theList.getLength() + " vs " + numCollisions + " vs " + longestCollisionRun);
       // ADD HERE: possibly update longestCollisionRun variable which should be counting the longest linked list
-      if (counter > longestCollisionRun) {
-        longestCollisionRun = counter;
+      if (theList.getLength() > longestCollisionRun) {
+        longestCollisionRun = theList.getLength();
       }
 
       // check load factor
@@ -192,12 +199,12 @@ public class HashSC<E> extends HashTable<E>{
    }
 
    public void displayStatistics(){
-	   System.out.println("\nIn the HashSC object:\n");
+	   System.out.println("\n\nIn the HashSC object:\n");
 	   System.out.println( "Table Size = " +  mTableSize );;
 	   System.out.println( "Number of entries = " + mSize);
 	   System.out.println( "Load factor = " + (double)mSize/mTableSize);
-	   System.out.println( "Number of collisions = " + this.numCollisions );
-	   System.out.println( "Longest Linked List = " + this.longestCollisionRun );
+	   System.out.println( "Number of collisions = " + numCollisions );
+	   System.out.println( "Longest Linked List = " + longestCollisionRun );
    }
    
    // protected methods of class ----------------------

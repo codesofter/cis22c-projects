@@ -1,5 +1,11 @@
 /*
-	class IpAddressValueHasher implements Hasher<IpAddress> so when you override hash(IpAddress) it returns a Long object for the parameter's ipValue's call to hashCode
+	@author So Choi
+
+	Name of Program:  	IpAddressStringComparator
+	Description:    	Implements Hasher<IpAddress> so when you override hash(IpAddress) it returns a Long object for the parameter's ipValue's call to hashCode
+	Date:         		6/8/17
+	OS:         		Mac OS X
+	Compiler:       	terminal (javac)
 */
 class IpAddressValueHasher implements Hasher<IpAddress>{
 	@Override

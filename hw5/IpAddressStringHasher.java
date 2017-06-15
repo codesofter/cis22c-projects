@@ -1,5 +1,11 @@
 /*
-	class IpAddressStringHasher implements Hasher<IpAddress> so when you override hash(IpAddress) it returns an int for the parameter's dottedDecimal String using the SAME algorithm shown in int Hash( String key ) in Lesson 8, p. 8.2 (NOT String's hashCode), or your own algorithm that manipulates each char
+	@author So Choi
+
+	Name of Program:  	IpAddressStringComparator
+	Description:    	Implements Hasher<IpAddress> so when you override hash(IpAddress) it returns an int for the parameter's dottedDecimal String using the SAME algorithm shown in int Hash( String key ) in Lesson 8, p. 8.2 (NOT String's hashCode), or your own algorithm that manipulates each char
+	Date:         		6/8/17
+	OS:         		Mac OS X
+	Compiler:       	terminal (javac)
 */
 class IpAddressStringHasher implements Hasher<IpAddress>{
 	@Override
